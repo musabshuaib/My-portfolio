@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — AI Engineer, LLM Systems & Agents</title>
+<meta name="description" content="Portfolio of Alex Rivera, an AI engineer building LLM applications and autonomous agents.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#top">Alex Rivera</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="#work">Work</a>
+    <a href="#stack">Stack</a>
+    <a href="#principles">Principles</a>
+    <a href="#contact">Contact</a>
+    <a class="header-cta header-cta--in-nav" href="mailto:hello@alexrivera.dev">hello@alexrivera.dev</a>
+  </nav>
+  <a class="header-cta header-cta--desktop" href="mailto:hello@alexrivera.dev">hello@alexrivera.dev</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-kicker">AI engineer — LLM systems &amp; agents</p>
+      <h1 class="hero-headline">
+        I build systems that reason, call tools, and get things done —
+        <em>reliably</em>, not just impressively in a demo.
+      </h1>
+      <p class="hero-sub">
+        Four years designing production LLM applications: retrieval
+        pipelines, multi-step agents, and the evaluation harnesses that keep
+        them honest. Currently building at
+        <!-- TODO: replace with your current company --> a mid-size fintech.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#work">See the work</a>
+        <a class="btn-ghost" href="/resume.pdf" download>Download résumé</a>
+      </div>
+    </div>
+
+    <aside class="trace-panel" aria-label="Example of an agent reasoning trace">
+      <div class="trace-panel__head">
+        <span class="trace-dot" aria-hidden="true"></span>
+        agent_trace.log
+      </div>
+      <ol class="trace-lines" id="traceLines">
+        <li data-role="task">task: "refund order #48213, notify customer"</li>
+        <li data-role="thought">thought: check order status before refunding</li>
+        <li data-role="call">call: orders.get(id=48213)</li>
+        <li data-role="obs">obs: status=delivered, eligible=true</li>
+        <li data-role="thought">thought: eligible — issue refund, then email</li>
+        <li data-role="call">call: payments.refund(id=48213)</li>
+        <li data-role="obs">obs: refund_id=rf_9k2, status=succeeded</li>
+        <li data-role="call">call: notify.email(template="refund_confirmed")</li>
+        <li data-role="done">done: refunded &amp; customer notified — 1.8s</li>
+      </ol>
+    </aside>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about">
+    <p class="about-lede">
+      I got into this work because most "AI features" quietly fall apart the
+      moment a real user does something unexpected — I like the part where
+      you make them not do that.
+    </p>
+    <p class="about-body">
+      My background is backend engineering, which shows up in how I treat
+      agents: as distributed systems with an unreliable component (the
+      model) at the center, not as magic. That means structured evals before
+      launch, fallbacks and confirmation steps for anything irreversible, and
+      logging good enough to debug a bad decision after the fact.
+    </p>
+    <p class="about-body">
+      Outside of agent orchestration, I spend a lot of time on retrieval
+      quality — the unglamorous work of chunking, re-ranking, and eval sets
+      that actually correlates with what users complain about.
+    </p>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <h2 class="section-title">Work</h2>
+
+    <ol class="work-list">
+      <li class="work-item">
+        <span class="work-index">01</span>
+        <div class="work-meta">
+          <span class="work-date">2025–now</span>
+        </div>
+        <div class="work-content">
+          <h3 class="work-name">Claims-triage agent</h3>
+          <p class="work-outcome">Cut manual review time by 62% across an 18-person claims team</p>
+          <p class="work-desc">
+            A multi-step agent that reads incoming insurance claims,
+            pulls policy and history context via tool calls, and either
+            auto-approves within a defined risk envelope or routes to a
+            human with a pre-filled summary. Shipped with a hold-out eval
+            set reviewed weekly against human adjudication.
+          </p>
+        </div>
+      </li>
+
+      <li class="work-item">
+        <span class="work-index">02</span>
+        <div class="work-meta">
+          <span class="work-date">2024</span>
+        </div>
+        <div class="work-content">
+          <h3 class="work-name">Support-ticket RAG pipeline</h3>
+          <p class="work-outcome">Raised first-response accuracy from 71% to 94% on a 500-ticket eval set</p>
+          <p class="work-desc">
+            Replaced a keyword-search-backed support bot with a re-ranked
+            hybrid retrieval pipeline and a citation-checking step that
+            rejects answers it can't ground in a source document.
+          </p>
+        </div>
+      </li>
+
+      <li class="work-item">
+        <span class="work-index">03</span>
+        <div class="work-meta">
+          <span class="work-date">2023</span>
+        </div>
+        <div class="work-content">
+          <h3 class="work-name">Internal eval &amp; observability harness</h3>
+          <p class="work-outcome">Adopted by 4 product teams as the default pre-launch gate</p>
+          <p class="work-desc">
+            A lightweight framework for scoring model changes against
+            regression sets before deploy, with trace logging so a bad
+            production answer can be replayed step by step.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section class="stack" id="stack">
+    <h2 class="section-title">Stack</h2>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <h3 class="stack-label">Models</h3>
+        <p class="stack-tags">Claude · GPT-4 class models · Llama fine-tunes · embedding models</p>
+      </div>
+      <div class="stack-group">
+        <h3 class="stack-label">Orchestration</h3>
+        <p class="stack-tags">Tool-calling agents · LangGraph · custom state machines · eval harnesses</p>
+      </div>
+      <div class="stack-group">
+        <h3 class="stack-label">Infra</h3>
+        <p class="stack-tags">Python · TypeScript · Postgres · pgvector · Redis · Docker · AWS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLES ============ -->
+  <section class="principles" id="principles">
+    <h2 class="section-title">How I build agents</h2>
+    <div class="principle">
+      <p class="principle-lede">Irreversible actions get a checkpoint.</p>
+      <p class="principle-body">If an agent can refund money or send an email, it confirms or logs before it acts — the model's confidence is not the same as being right.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-lede">If it isn't evaluated, it isn't shipped.</p>
+      <p class="principle-body">Every agent gets a hold-out set of real cases before launch, and the same set gets re-run on every prompt or model change.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-lede">Traces are a debugging tool, not a log dump.</p>
+      <p class="principle-body">I log thought → call → observation as structured steps so a bad answer can be replayed and understood, not just flagged.</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <h2 class="contact-headline">Building something that needs to reason reliably? I'd like to hear about it.</h2>
+    <a class="contact-email" href="mailto:hello@alexrivera.dev">hello@alexrivera.dev</a>
+    <div class="contact-links">
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 Alex Rivera</span>
+  <a href="#top">Back to top</a>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
